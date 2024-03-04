@@ -6,7 +6,7 @@ using System.Text;
 using MySqlConnector;
 
 int numeroLigne = 0;
-
+//db connection
 string m_strMySQLConnectionString;
 m_strMySQLConnectionString = "server=localhost;userid=root;port=6033;password=root;database=clothing";
 
@@ -18,12 +18,11 @@ using (var mysqlconnection = new MySqlConnection(m_strMySQLConnectionString))
     Random random = new Random();
     foreach (string line in System.IO.File.ReadAllLines(@"D:\store_zara2.csv",
                  System.Text.Encoding.UTF8))
-    {
+    {   //csv reader
         string image = "";
         var fix = line.Replace("'", "");
         fix = line.Replace("’", "");
         var columns = line.Split(",");
-        //string idClothing = "'0'";
         string brand = "'" + columns[0] + "'";
         string url = "'" + columns[1] + "'";
         string sku = "'" + columns[2] + "'";
@@ -34,9 +33,11 @@ using (var mysqlconnection = new MySqlConnection(m_strMySQLConnectionString))
         string terms = "'" + columns[7] + "'";
         string section = "'" + columns[8] + "'";
 
+        //replacing space by "-" in the name column
         name = name.Replace(" ", "-");
         numeroLigne = numeroLigne++;
 
+        //converting usd to chf
         double priceConvert;
         double priceCHF = 0;
         Console.WriteLine(price);
@@ -47,6 +48,7 @@ using (var mysqlconnection = new MySqlConnection(m_strMySQLConnectionString))
         priceCHF = Math.Round(priceCHF, 2);
         double priceUSD = priceConvert;
         string finalPrice = "'" + priceCHF + "CHF (" + price + "$)" + "'";
+        //condition for image name
         if (priceCHF < 25)
         {
             image = "low.png";
@@ -62,10 +64,11 @@ using (var mysqlconnection = new MySqlConnection(m_strMySQLConnectionString))
             image = "high.png";
 
         }
+        //inserting data into db for every item above 5usd
         if (priceUSD > 5)
         {
             string sql =
-                $"INSERT INTO t_clothes( brand, url, sku, name, priceUSD, priceCHF, scrapedAt, terms, section, priceImage) VALUES ({/*idClothing + "," + */brand + "," + url + "," + sku + "," + name + "," + priceUSD + "," + priceCHF + "," + scrapedAt + "," + terms + "," + section + "," + "'" + image + "'"})";
+                $"INSERT INTO t_clothes( brand, url, sku, name, priceUSD, priceCHF, scrapedAt, terms, section, priceImage) VALUES ({/brand + "," + url + "," + sku + "," + name + "," + priceUSD + "," + priceCHF + "," + scrapedAt + "," + terms + "," + section + "," + "'" + image + "'"})";
             using (MySqlCommand cmd = mysqlconnection.CreateCommand())
             {
                 cmd.CommandType = CommandType.Text;
