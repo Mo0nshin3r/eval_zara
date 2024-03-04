@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "QScs84B0SZeYviKl20DSck0/zlhumCp3Qvp3dXcJ/tyGaJ0kzZ3q8ATtg1xxojpZSN+AZA1JJJUKZc2q+LRghw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pe27igm\\Desktop\\eval_zara\\eval_zara1\\eval_zara1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pe27igm\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
+    "C:\\Users\\pe27igm\\.nuget\\packages\\mysqlconnector\\2.3.5\\mysqlconnector.2.3.5.nupkg.sha512",
+    "C:\\Users\\pe27igm\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.2\\system.diagnostics.diagnosticsource.7.0.2.nupkg.sha512",
+    "C:\\Users\\pe27igm\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
